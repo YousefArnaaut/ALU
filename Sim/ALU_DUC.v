@@ -1,24 +1,13 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Faculty: Electronics and Communication Department at faculty of Engineering Zagazig University‏
+// Engineer: Yousef Ahmed Muhammed Medhat Lotfy
 // 
-// Create Date: 08/04/2023 01:57:29 AM
-// Design Name: 
-// Module Name: ALU_DUC
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
+// Create Date: 08/04/2023 12:34:57 AM
+// Project Name: ALU_Design
 // Revision 0.01 - File Created
-// Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
 
 module ALU_DUC #(parameter n = 16) ();
 
