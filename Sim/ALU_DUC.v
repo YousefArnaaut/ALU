@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 08/04/2023 12:34:57 AM
+// Create Date: 08/04/2023 01:57:29 AM
 // Design Name: 
-// Module Name: ALU
+// Module Name: ALU_DUC
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,70 +20,44 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module ALU #(parameter n=16)(
-    
-    input [2:0] op,
-    input signed [n - 1:0] x,y,
-    output reg signed [2*n - 1:0] f
-    );
+module ALU_DUC #(parameter n = 16) ();
 
-    always@(x,y,op) begin
+    reg [n - 1:0] x,y;
+    reg [2:0] op;
+    wire [2*n - 1:0] f;
     
-        f='bx;
+    ALU #(.n(n)) test(
+        
+        .x(x),
+        .y(y),
+        .op(op),
+        .f(f)
+        
+    );
     
-        if(op==3'b000) begin
-            f=x+y;
-            $display("\t%d + %d = %d",x,y,f);
-            $display("\t%b + %b = %b",x,y,f);
-            end
-            
-        else if(op==3'b001) begin
-            f=x-y;
-            $display("\t%d - %d = %d",x,y,f);
-            $display("\t%b - %b = %b",x,y,f);
-            end
-            
-        else if(op==3'b010) begin
-            f=x*y;
-            $display("\t%d * %d = %d",x,y,f);
-            $display("\t%b * %b = %b",x,y,f);
-            end
-            
-        else if(op==3'b011)begin 
-            f={x/y,x%y};
-                if(x%y == 0 )begin
-                    $display("\t%d / %d = %d",x,y,x/y);
-                    $display("\t%b / %b = %b",x,y,f);
-                    end
-                    
-                else begin
-                $display("\t%d / %d = %d+%d/%d",x,y,(x/y),(x%y),y);
-                $display("\t%b / %b = %b",x,y,f);
-                end
-            end
-            
-        else if(op==3'b100) begin
-            f=x|y;
-            $display("\t%d | %d = %d",x,y,f);
-            $display("\t%b | %b = %b",x,y,f);
-            end
-            
-        else if(op==3'b101) begin
-            f=x&y;
-            $display("\t%d & %d = %d",x,y,f);
-            $display("\t%b & %b = %b",x,y,f);
-            end
-            
-        else if(op==3'b110) begin
-            f= ~x;
-            $display("\t~%d = %d",x,f);
-            $display("\t~%b = %b",x,f);
-            end
-            
-        else if(op==3'b111) begin
-            f= ~y;
-            $display("\t~%d = %d",y,f);
-            $display("\t~%b = %b",y,f);
+    initial begin
+    
+        #10 x=5; y=7; op=3'b000;
+        #10 x=8; y=2; op=3'b001;
+        #10 x=7; y=17; op=3'b010;
+        #10 x=2; y=-40; op=3'b010;
+        #10 x=15; y=5; op=3'b011;
+        #10 x=15; y=-5; op=3'b011;
+        #10 x=57; y=22; op=3'b100;
+        #10 x=100; y=120; op=3'b101;
+        #10 x=740; y=880; op=3'b111;
+        #10 x=1000; y=880; op=3'b100;
+        #10 x=100; y=880; op=3'b110;
+        #10 x=1000; y=1000; op=3'b010;
+        #10 x=3000; y=-100; op=3'b010;
+        #10 x=1700; y=1600; op=3'b000;
+        #10 x=32767; y=0; op=3'b000;
+        #10 x=14; y=3; op=3'b011;
+        #10 $finish;
+          
+    end       
+endmodule
+
             end
             
     end
