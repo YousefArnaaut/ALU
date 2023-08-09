@@ -47,7 +47,7 @@ module ALU #(parameter n=16)(
                     end
                     
                 else begin
-                $display("\t%d / %d = %d+%d/%d",x,y,(x/y),(x%y),y);
+                $display("\t%d / %d = %d and the remainder = %d",x,y,(x/y),(x%y));
                 $display("\t%b / %b = %b",x,y,f);
                 end
             end
